@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta name="author" content="Bagus Uswanto" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | SITTA</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+
+  <body class="dashboard-body">
+    <div class="dashboard-container">
+      <header class="dashboard-header">
+        <div class="header-left">
+          <img src="img/logo_ut.png" alt="Logo SITTA" class="logo-sitta" />
+          <h1 id="greeting">Selamat datang!</h1>
+        </div>
+        <button id="logoutBtn" class="btn-logout">Logout</button>
+      </header>
+
+      <main>
+        <h2>Menu Utama</h2>
+
+        <div class="menu-grid">
+          <div class="menu-card" onclick="navigateTo('stok.html')">
+            <i class="fas fa-book"></i> <br />
+            <span>Informasi Bahan Ajar</span>
+          </div>
+
+          <div class="menu-card" onclick="navigateTo('tracking.html')">
+            <i class="fas fa-truck"></i> <br />
+            <span>Tracking Pengiriman</span>
+          </div>
+
+          <div class="menu-card" onclick="alert('Laporan belum tersedia')">
+            <i class="fas fa-chart-line"></i> <br />
+            <span>Laporan</span>
+          </div>
+
+          <div class="menu-card" onclick="alert('Histori belum tersedia')">
+            <i class="fa-clock-rotate-left fas"></i> <br />
+            <span>Histori Transaksi</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  <div id="footer"></div>
+
+  <!-- Script to dynamically create footer using JavaScript (ASCII codes) -->
+  <script>
+    const footer = document.createElement("footer");
+    footer.innerHTML =
+      "<p>" +
+      String.fromCharCode(
+        0xa9,
+        0x20,
+        0x32,
+        0x30,
+        0x32,
+        0x35,
+        0x20,
+        0x2d,
+        0x20,
+        0x43,
+        0x72,
+        0x65,
+        0x61,
+        0x74,
+        0x65,
+        0x64,
+        0x20,
+        0x62,
+        0x79,
+        0x20
+      ) +
+      '<strong><a href="https://github.com/bagususwanto" target="_blank">Bagus Uswanto</a></strong>' +
+      "</p>";
+
+    document.body.appendChild(footer);
+  </script>
+</html>

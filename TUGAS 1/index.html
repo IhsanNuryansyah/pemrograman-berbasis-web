@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta name="author" content="Bagus Uswanto" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | SITTA</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body class="login-body">
+    <div class="login-container">
+      <!-- Logo SITTA -->
+      <div class="logo-wrapper">
+        <img src="img/logo_ut.png" alt="Logo SITTA" class="logo-sitta-login" />
+      </div>
+
+      <h2>SITTA - Sistem Informasi Tracking & Transaksi Ajar</h2>
+
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Masukkan email" required />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Masukkan password"
+          required
+        />
+
+        <button type="submit" class="btn-login">Login</button>
+
+        <div class="login-options">
+          <a href="#" id="forgotPassword">Lupa Password?</a>
+          <a href="#" id="register">Daftar</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal Lupa Password -->
+    <div id="modalForgot" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Lupa Password</h3>
+        <p>Silakan hubungi admin SITTA untuk reset password Anda.</p>
+      </div>
+    </div>
+
+    <!-- Modal Daftar -->
+    <div id="modalRegister" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Daftar Akun Baru</h3>
+        <p>Untuk saat ini, pendaftaran akun hanya dilakukan oleh admin.</p>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  <div id="footer"></div>
+</html>
