@@ -8,55 +8,68 @@ if (loginForm) {
     const password = document.getElementById("password").value.trim();
 
     const user = dataPengguna.find(
-      (u) => u.email === email && u.password === password
+      (u) => u.email === email && u.password === password,
     );
 
     if (user) {
       sessionStorage.setItem("loggedUser", JSON.stringify(user));
-      alert(`Selamat datang, ${user.nama}!`);
-      window.location.href = "dashboard.html";
+      // alert(`Selamat datang, ${user.nama}!`);
+      swal
+        .fire({
+          title: "Login Berhasil",
+          text: `Selamat datang, ${user.nama}`,
+          icon: "info",
+          heightAuto: false,
+        })
+        .then(() => {
+          window.location.href = "dashboard.html";
+        });
     } else {
-      alert("Email atau password salah!");
+      swal.fire({
+        title: "Login Gagal",
+        text: "Email atau Password salah. Silahkan koreksi email dan password Anda",
+        icon: "info",
+        heightAuto: false,
+      });
     }
   });
 }
 
 // ==== MODAL ====
-const modalForgot = document.getElementById("modalForgot");
-const modalRegister = document.getElementById("modalRegister");
-const closeButtons = document.querySelectorAll(".close");
-
 const forgotPassword = document.getElementById("forgotPassword");
-if (forgotPassword) {
-  document.getElementById("forgotPassword").onclick = () =>
-    (modalForgot.style.display = "block");
-}
 const register = document.getElementById("register");
-if (register) {
-  document.getElementById("register").onclick = () =>
-    (modalRegister.style.display = "block");
+
+if (forgotPassword) {
+  forgotPassword.addEventListener("click", () => {
+    swal.fire({
+      title: "Lupa Password",
+      text: "Silakan hubungi admin SITTA untuk reset password Anda",
+      icon: "info",
+      heightAuto: false,
+    });
+  });
 }
 
-closeButtons.forEach(
-  (btn) =>
-    (btn.onclick = () => {
-      modalForgot.style.display = "none";
-      modalRegister.style.display = "none";
-    })
-);
-
-window.onclick = (event) => {
-  if (event.target === modalForgot || event.target === modalRegister) {
-    modalForgot.style.display = "none";
-    modalRegister.style.display = "none";
-  }
-};
+if (register) {
+  register.addEventListener("click", () => {
+    swal.fire({
+      title: "Daftar Akun Baru",
+      text: "Untuk saat ini, pendaftaran akun hanya dilakukan oleh admin SITTA",
+      icon: "info",
+      heightAuto: false,
+    });
+  });
+}
 
 // ===== DASHBOARD LOGIC =====
 document.addEventListener("DOMContentLoaded", () => {
   const userData = sessionStorage.getItem("loggedUser");
   const greeting = document.getElementById("greeting");
   const logoutBtn = document.getElementById("logoutBtn");
+  const stockBtn = document.getElementById("stockBtn");
+  const trackingBtn = document.getElementById("trackingBtn");
+  const laporanBtn = document.getElementById("laporanBtn");
+  const historiBtn = document.getElementById("historiBtn");
 
   // kalau bukan di dashboard, abaikan
   if (!greeting) return;
@@ -74,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let greetText = "";
 
   if (hour >= 5 && hour < 12) greetText = "Selamat Pagi";
-  else if (hour >= 12 && hour < 17) greetText = "Selamat Siang";
-  else if (hour >= 17 && hour < 20) greetText = "Selamat Sore";
+  else if (hour >= 12 && hour < 15) greetText = "Selamat Siang";
+  else if (hour >= 15 && hour < 18) greetText = "Selamat Sore";
   else greetText = "Selamat Malam";
 
   greeting.textContent = `${greetText}, ${user.nama} (${user.role})`;
@@ -85,12 +98,41 @@ document.addEventListener("DOMContentLoaded", () => {
     sessionStorage.removeItem("loggedUser");
     window.location.href = "index.html";
   });
-});
 
-// fungsi navigasi
-function navigateTo(page) {
-  window.location.href = page;
-}
+  // Menu Navigasi
+  if (stockBtn) {
+    stockBtn.addEventListener("click", () => {
+      window.location.href = "stok.html";
+    });
+  }
+
+  if (trackingBtn) {
+    trackingBtn.addEventListener("click", () => {
+      window.location.href = "tracking.html";
+    });
+  }
+
+  if (laporanBtn) {
+    laporanBtn.addEventListener("click", () => {
+      Swal.fire({
+        title: "Info",
+        text: "Laporan belum tersedia",
+        icon: "info",
+        heightAuto: false,
+      });
+    });
+  }
+  if (historiBtn) {
+    historiBtn.addEventListener("click", () => {
+      Swal.fire({
+        title: "Info",
+        text: "Histori Transaksi belum tersedia",
+        icon: "info",
+        heightAuto: false,
+      });
+    });
+  }
+});
 
 // ===== TRACKING LOGIC =====
 function cariDO() {
@@ -100,14 +142,24 @@ function cariDO() {
   container.innerHTML = "";
 
   if (!input) {
-    alert("Silakan masukkan nomor DO terlebih dahulu.");
+    Swal.fire({
+      title: "Input Kosong",
+      text: "Silahkan masukkan nomor DO terlebih dahulu",
+      icon: "warning",
+      heightAuto: false,
+    });
     return;
   }
 
   const data = dataTracking[input];
 
   if (!data) {
-    alert("Nomor DO tidak ditemukan!");
+    Swal.fire({
+      text: "Data tidak ditemukan",
+      text: "Nomor Do tidak ditemukan",
+      icon: "error",
+      heightAuto: false,
+    });
     return;
   }
 
@@ -132,6 +184,15 @@ function cariDO() {
     <h4>Riwayat Perjalanan:</h4>
     ${perjalananHTML}
   `;
+
+  Swal.fire({
+    title: "Berhasil",
+    text: "Data pengiriman ditemukan",
+    icon: "success",
+    timer: 1500,
+    showConfirmButton: false,
+    heightAuto: false,
+  });
 }
 
 // ==== STOCK LOGIC ====
@@ -177,27 +238,6 @@ window.onclick = function (event) {
   }
 };
 
-// === Menampilkan data stok ===
-function tampilkanStok() {
-  const tabelBody = document.getElementById("tabelBody");
-  if (!tabelBody) return;
-
-  tabelBody.innerHTML = "";
-  dataBahanAjar.forEach((item) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${item.kodeLokasi}</td>
-      <td>${item.kodeBarang}</td>
-      <td>${item.namaBarang}</td>
-      <td>${item.jenisBarang}</td>
-      <td>${item.edisi}</td>
-      <td>${item.stok}</td>
-      <td><img src="${item.cover}" alt="${item.namaBarang}" /></td>
-    `;
-    tabelBody.appendChild(row);
-  });
-}
-
 // === Simpan Data Baru dari Form ===
 function simpanData(event) {
   event.preventDefault();
@@ -218,13 +258,22 @@ function simpanData(event) {
     !newData.namaBarang ||
     isNaN(newData.stok)
   ) {
-    alert("Lengkapi semua data dengan benar!");
-    return;
+    Swal.fire({
+      title: "Data tidak lengkap",
+      text: "Lengkapi semua data dengan benar",
+      icon: "warning",
+      heightAuto: false,
+    });
   }
 
   dataBahanAjar.push(newData);
   tampilkanStok();
   closeModal();
-  alert("Data berhasil ditambahkan!");
+  Swal.fire({
+    title: "Berhasil",
+    text: "Data berhasil ditambahkan",
+    icon: "success",
+    heightAuto: false,
+  });
   document.getElementById("formTambah").reset();
 }
