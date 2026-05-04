@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta name="author" content="Bagus Uswanto" />
+    <meta name="author" content="Ihsan Nuryansyah" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | SITTA</title>
@@ -9,6 +9,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body class="dashboard-body">
@@ -25,22 +26,22 @@
         <h2>Menu Utama</h2>
 
         <div class="menu-grid">
-          <div class="menu-card" onclick="navigateTo('stok.html')">
+          <div class="menu-card" id="stockBtn" >
             <i class="fas fa-book"></i> <br />
             <span>Informasi Bahan Ajar</span>
           </div>
 
-          <div class="menu-card" onclick="navigateTo('tracking.html')">
+          <div class="menu-card" id="trackingBtn">
             <i class="fas fa-truck"></i> <br />
             <span>Tracking Pengiriman</span>
           </div>
 
-          <div class="menu-card" onclick="alert('Laporan belum tersedia')">
+          <div class="menu-card" id="laporanBtn">
             <i class="fas fa-chart-line"></i> <br />
             <span>Laporan</span>
           </div>
 
-          <div class="menu-card" onclick="alert('Histori belum tersedia')">
+          <div class="menu-card" id="historiBtn">
             <i class="fa-clock-rotate-left fas"></i> <br />
             <span>Histori Transaksi</span>
           </div>
@@ -53,36 +54,5 @@
   </body>
   <div id="footer"></div>
 
-  <!-- Script to dynamically create footer using JavaScript (ASCII codes) -->
-  <script>
-    const footer = document.createElement("footer");
-    footer.innerHTML =
-      "<p>" +
-      String.fromCharCode(
-        0xa9,
-        0x20,
-        0x32,
-        0x30,
-        0x32,
-        0x35,
-        0x20,
-        0x2d,
-        0x20,
-        0x43,
-        0x72,
-        0x65,
-        0x61,
-        0x74,
-        0x65,
-        0x64,
-        0x20,
-        0x62,
-        0x79,
-        0x20
-      ) +
-      '<strong><a href="https://github.com/bagususwanto" target="_blank">Bagus Uswanto</a></strong>' +
-      "</p>";
-
-    document.body.appendChild(footer);
   </script>
 </html>

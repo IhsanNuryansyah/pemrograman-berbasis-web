@@ -1,6 +1,11 @@
+/* WARNA 
+ #002ee6, #ff8800
+*/
+
+
 body {
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(to right, #004aad, #ff8800);
+  background: linear-gradient(to right, #002ee6, #324e75);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -45,9 +50,10 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
 .btn-login {
-  width: 100%;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
   padding: 10px;
   background-color: #004aad;
   color: white;
@@ -111,7 +117,7 @@ input {
 
 /* ===== DASHBOARD ===== */
 .dashboard-body {
-  background: linear-gradient(-45deg, #004aad, #ff8800, #007bff, #ffcc00);
+  background: linear-gradient(-45deg, #6691cc, #667dd9, #2c4bc6, #002ee6); 
   background-size: 400% 400%;
   animation: gradientMove 10s ease infinite;
   color: white;
@@ -144,6 +150,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.dashboard-container h2 {
+  color: white;
 }
 
 .header-left {
@@ -184,7 +194,7 @@ main {
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin-top: 30px;
   text-align: center;
@@ -520,4 +530,12 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+
+/* Saat layar kecil */
+@media (max-width: 600px) {
+  .menu-grid{
+    grid-template-columns: 1fr;
+  }
 }
