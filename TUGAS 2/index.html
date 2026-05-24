@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SISTA – Halaman Utama</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body>
+    <div id="app" class="home-container">
+      <header>
+        <h1>
+          <i class="fa-solid fa-graduation-cap icon"></i> Sistem Informasi Stok
+          dan Tracking Ajar (SISTA)
+        </h1>
+        <p class="subtitle">
+          Akses cepat ke data stok bahan ajar dan pelacakan pengiriman paket UT
+        </p>
+      </header>
+
+      <main class="menu-grid">
+        <!-- Card 1 -->
+        <div class="menu-card">
+          <i class="fa-solid fa-boxes-stacked icon"></i>
+          <h2>Stok Bahan Ajar</h2>
+          <p>
+            Kelola dan pantau stok bahan ajar berdasarkan kategori, UPBJJ, serta
+            kondisi ketersediaan.
+          </p>
+          <a href="stok.html" class="btn btn-primary">
+            <i class="fa-right-long fa-solid"></i> Masuk ke Stok
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="menu-card">
+          <i class="fa-solid fa-truck-fast icon"></i>
+          <h2>Tracking Delivery Order</h2>
+          <p>
+            Lacak status pengiriman paket bahan ajar dan tambahkan delivery
+            order baru dengan mudah.
+          </p>
+          <a href="tracking.html" class="btn btn-primary">
+            <i class="fa-right-long fa-solid"></i> Lihat Tracking
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {},
+      });
+    </script>
+  </body>
+</html>
